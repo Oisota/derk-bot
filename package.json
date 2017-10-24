@@ -1,0 +1,20 @@
+{
+  "name": "derk-bot",
+  "version": "0.1.0",
+  "description": "GroupMe bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "groupme",
+    "bot"
+  ],
+  "author": "Derek Morey",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  }
+}
