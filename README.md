@@ -1,3 +1,3 @@
-DerkBot
+Derk Bot
 =======
-A bot for GroupMe
+A simple echo bot for GroupMe.
