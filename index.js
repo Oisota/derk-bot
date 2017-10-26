@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const request = require('request');
 
 const port = process.env.PORT
-const addr = process.env.ADDR
 const bot_name = process.env.BOT_NAME;
 const bot_id = process.env.BOT_ID;
 const api_url = 'https://api.groupme.com/v3/bots/post'
@@ -35,6 +34,6 @@ app.post('/', (req, res) => {
 	res.status(200).end();
 });
 
-app.listen(port, addr, () => {
-	console.log('Listening on ' + addr + ':' + port);
+app.listen(port, () => {
+	console.log('Listening on port: ' + port);
 })
