@@ -16,14 +16,24 @@ app.post('/', (req, res) => {
 		return res.status(400).end();
 	}
 
-
 	//simple echo bot 
-	const message = req.body.name + ' said: ' + req.body.text;
+	const message = '@' + req.body.name + ' said: ' + req.body.text;
 
 	request.post({
 		url: api_url,
 		json: true,
 		body: {
+			attachments: [
+			{
+				type: 'mentions',
+				user_ids: [
+					req.body.user_id
+				],
+				loci: [
+					[0, req.body.name.length + 1]
+				]
+			}
+			],
 			bot_id: bot_id,
 			text: message,
 		}
