@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+const shakespeareInsult = require('shakespeare-insult');
 
 const port = process.env.PORT
 const bot_name = process.env.BOT_NAME;
@@ -16,9 +17,22 @@ app.post('/', (req, res) => {
 		return res.status(400).end();
 	}
 
-	//simple echo bot 
-	const message = '@' + req.body.name + ' said: ' + req.body.text;
+	//check if first 2 words are "derkbot insult"
+	if (req.body.text.slice(0,14) != 'derkbot insult') {
+		return res.status(400).end();
+	}
 
+	//get mention location
+	const start = req.body.attachments[0].loci[0][0];
+	const end = req.body.attachments[0].loci[0][1] + start;
+
+	//get mention string
+	const mention = req.body.text.slice(start, end);
+
+	//create message
+	const message = mention + ' is a ' + shakespeareInsult.random();
+
+	//post to api
 	request.post({
 		url: api_url,
 		json: true,
@@ -30,7 +44,7 @@ app.post('/', (req, res) => {
 					req.body.user_id
 				],
 				loci: [
-					[0, req.body.name.length + 1]
+					[0, mention.length + 1]
 				]
 			}
 			],
