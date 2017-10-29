@@ -19,20 +19,21 @@ app.post('/', (req, res) => {
 
 	//check if message syntax is correct
 	const isInsult = req.body.text.slice(0,14) === 'derkbot insult';
-	const hasMentions = req.body.attachments.findIndex(a => a.type === 'mentions') !== -1;
+	const mentions = req.body.attachments.find(a => a.type === 'mentions');
+	const hasMentions = mentions !== undefined;
 	if (!(isInsult && hasMentions)) {
 		return res.status(400).end();
 	}
 
 	//get mention location
-	const start = req.body.attachments[0].loci[0][0];
-	const end = req.body.attachments[0].loci[0][1] + start;
+	const start = mentions.loci[0][0];
+	const end = mentions.loci[0][1] + start;
 
 	//get mention string
 	const mention = req.body.text.slice(start, end);
 
 	//create message
-	const message = mention + ' is a ' + shakespeareInsult.random();
+	const message = `${mention} is a ${shakespeareInsult.random()}`;
 
 	//post to api
 	request.post({
@@ -43,7 +44,7 @@ app.post('/', (req, res) => {
 			{
 				type: 'mentions',
 				user_ids: [
-					req.body.attachments[0].user_ids[0]
+					mentions.user_ids[0]
 				],
 				loci: [
 					[0, mention.length + 1]
@@ -62,4 +63,4 @@ app.post('/', (req, res) => {
 
 app.listen(port, () => {
 	console.log('Listening on port: ' + port);
-})
+});
