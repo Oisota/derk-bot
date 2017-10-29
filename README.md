@@ -1,3 +1,3 @@
 Derk Bot
 =======
-A simple echo bot for GroupMe.
+A GroupMe bot that generates Shakespeareian insults.
