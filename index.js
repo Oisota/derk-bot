@@ -17,8 +17,10 @@ app.post('/', (req, res) => {
 		return res.status(400).end();
 	}
 
-	//check if first 2 words are "derkbot insult"
-	if (req.body.text.slice(0,14) != 'derkbot insult') {
+	//check if message syntax is correct
+	const isInsult = req.body.text.slice(0,14) === 'derkbot insult';
+	const hasMentions = req.body.attachments.findIndex(a => a.type === 'mentions') !== -1;
+	if (!(isInsult && hasMentions)) {
 		return res.status(400).end();
 	}
 
@@ -41,7 +43,7 @@ app.post('/', (req, res) => {
 			{
 				type: 'mentions',
 				user_ids: [
-					req.body.user_id
+					req.body.attachments[0].user_ids[0]
 				],
 				loci: [
 					[0, mention.length + 1]
