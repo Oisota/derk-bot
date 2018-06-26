@@ -14,9 +14,9 @@
   "author": "Derek Morey",
   "license": "GPL-3.0",
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "request": "^2.83.0",
     "shakespeare-insult": "^1.0.0"
   }
 }

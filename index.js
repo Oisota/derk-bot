@@ -1,12 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const request = require('request');
+const axios = require('axios');
 const shakespeareInsult = require('shakespeare-insult');
 
 const port = process.env.PORT
 const bot_name = process.env.BOT_NAME;
 const bot_id = process.env.BOT_ID;
-const api_url = 'https://api.groupme.com/v3/bots/post'
+const api_url = process.env.API_URL;
+
+const http = axios.create({
+	baseURL: api_url,
+	timeout: 5000,
+	responseType: 'json',
+	headers: {
+		'Content-Type': 'application/json',
+	}
+});
 
 const app = express();
 
@@ -36,11 +45,10 @@ app.post('/', (req, res) => {
 	const message = `${mention} is a ${shakespeareInsult.random()}`;
 
 	//post to api
-	request.post({
-		url: api_url,
-		json: true,
-		body: {
-			attachments: [
+	http.post('/', {
+		bot_id: bot_id,
+		text: message,
+		attachments: [
 			{
 				type: 'mentions',
 				user_ids: [
@@ -50,12 +58,11 @@ app.post('/', (req, res) => {
 					[0, mention.length + 1]
 				]
 			}
-			],
-			bot_id: bot_id,
-			text: message,
-		}
-	}, (err, resp, body) => {
-		console.log(resp.statusCode);
+		],
+	}).then(resp) => {
+		console.log(resp.status);
+	}).catch(err => {
+		console.log(err);
 	});
 
 	res.status(200).end();
