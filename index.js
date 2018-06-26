@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -59,7 +60,7 @@ app.post('/', (req, res) => {
 				]
 			}
 		],
-	}).then(resp) => {
+	}).then(resp => {
 		console.log(resp.status);
 	}).catch(err => {
 		console.log(err);
