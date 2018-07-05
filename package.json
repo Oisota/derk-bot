@@ -18,6 +18,8 @@
     "body-parser": "^1.18.2",
     "dotenv": "^6.0.0",
     "express": "^4.16.2",
+    "helmet": "^3.12.1",
+    "morgan": "^1.9.0",
     "shakespeare-insult": "^1.0.0"
   }
 }

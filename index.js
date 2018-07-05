@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const shakespeareInsult = require('shakespeare-insult');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
 const port = process.env.PORT
 const bot_name = process.env.BOT_NAME;
@@ -20,7 +22,9 @@ const http = axios.create({
 
 const app = express();
 
+app.use(helmet());
 app.use(bodyParser.json());
+app.use(morgan('combined'));
 
 app.post('/', (req, res) => {
 	if (req.body.name === bot_name) { //don't want bot talking to itself
