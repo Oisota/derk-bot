@@ -4,11 +4,13 @@
   "description": "GroupMe bot",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "debug": "node --inspect-brk index.js"
+    "start": "npm run lint && node index.js",
+    "debug": "npm run lint && node --inspect-brk index.js",
+		"lint": "eslint *.js"
   },
   "keywords": [
     "groupme",
+    "insult",
     "bot"
   ],
   "author": "Derek Morey",
@@ -21,5 +23,8 @@
     "helmet": "^3.12.1",
     "morgan": "^1.9.0",
     "shakespeare-insult": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0"
   }
 }
