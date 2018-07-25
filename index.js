@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config()
+const dotenv = require('dotenv').config(); // eslint-disable-line no-unused-vars
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -6,7 +6,7 @@ const shakespeareInsult = require('shakespeare-insult');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
-const port = process.env.PORT
+const port = process.env.PORT;
 const bot_name = process.env.BOT_NAME;
 const bot_id = process.env.BOT_ID;
 const api_url = process.env.API_URL;
@@ -32,7 +32,7 @@ app.post('/', (req, res) => {
 	}
 
 	//check if message syntax is correct
-	const isInsult = req.body.text.slice(0,14) === 'derkbot insult';
+	const isInsult = req.body.text.slice(0,11) === 'bill insult';
 	const mentions = req.body.attachments.find(a => a.type === 'mentions');
 	const hasMentions = mentions !== undefined;
 	if (!(isInsult && hasMentions)) {
