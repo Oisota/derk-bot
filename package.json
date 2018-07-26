@@ -2,11 +2,12 @@
   "name": "derk-bot",
   "version": "0.1.0",
   "description": "GroupMe bot",
+	"repository": "https://github.com/Oisota/derk-bot",
   "main": "index.js",
   "scripts": {
     "start": "npm run lint && node index.js",
     "debug": "npm run lint && node --inspect-brk index.js",
-		"lint": "eslint *.js"
+    "lint": "eslint *.js"
   },
   "keywords": [
     "groupme",
@@ -18,7 +19,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
-    "dotenv": "^6.0.0",
     "express": "^4.16.2",
     "helmet": "^3.12.1",
     "morgan": "^1.9.0",
