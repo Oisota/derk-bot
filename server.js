@@ -1,4 +1,3 @@
-const dotenv = require('dotenv').config(); // eslint-disable-line no-unused-vars
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -6,10 +5,11 @@ const shakespeareInsult = require('shakespeare-insult');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const config = require(process.env.DERKBOT_CONFIG);
 const port = process.env.PORT;
-const bot_name = process.env.BOT_NAME;
-const bot_id = process.env.BOT_ID;
-const api_url = process.env.API_URL;
+const bot_name = config.BOT_NAME;
+const bot_id = config.BOT_ID;
+const api_url = config.API_URL;
 
 const http = axios.create({
 	baseURL: api_url,
