@@ -32,7 +32,7 @@ app.post('/', (req, res) => {
 	}
 
 	//check if message syntax is correct
-	const isInsult = req.body.text.slice(0,11) === 'bill insult';
+	const isInsult = req.body.text.slice(0,11) === 'Bill insult';
 	const mentions = req.body.attachments.find(a => a.type === 'mentions');
 	const hasMentions = mentions !== undefined;
 	if (!(isInsult && hasMentions)) {
