@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "GroupMe bot",
 	"repository": "https://github.com/Oisota/derk-bot",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "npm run lint && node index.js",
     "debug": "npm run lint && node --inspect-brk index.js",
