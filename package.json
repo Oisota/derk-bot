@@ -5,8 +5,8 @@
 	"repository": "https://github.com/Oisota/derk-bot",
   "main": "server.js",
   "scripts": {
-    "start": "npm run lint && node index.js",
-    "debug": "npm run lint && node --inspect-brk index.js",
+    "start": "npm run lint && node server.js",
+    "debug": "npm run lint && node --inspect-brk server.js",
     "lint": "eslint *.js"
   },
   "keywords": [
