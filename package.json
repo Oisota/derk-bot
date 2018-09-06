@@ -2,11 +2,11 @@
   "name": "derk-bot",
   "version": "0.1.0",
   "description": "GroupMe bot",
-	"repository": "https://github.com/Oisota/derk-bot",
+  "repository": "https://github.com/Oisota/derk-bot",
   "main": "server.js",
   "scripts": {
-		"start": "npm run lint && pm2 start ecosystem.config.js",
-		"stop": "pm2 stop ecosystem.config.js",
+    "start": "npm run lint && pm2 start ecosystem.config.js",
+    "stop": "pm2 stop ecosystem.config.js",
     "lint": "eslint *.js"
   },
   "keywords": [
@@ -20,6 +20,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "express-rate-limit": "^3.1.0",
     "helmet": "^3.12.1",
     "morgan": "^1.9.0",
     "shakespeare-insult": "^1.0.0"

@@ -4,6 +4,7 @@ const axios = require('axios');
 const shakespeareInsult = require('shakespeare-insult');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
 
 const config = require(process.env.DERKBOT_CONFIG);
 const port = process.env.PORT;
@@ -22,6 +23,13 @@ const http = axios.create({
 
 const app = express();
 
+// limit to 400 requests per minute
+const limiter = rateLimit({
+	windowMS: 60 * 1000,
+	max: 400,
+});
+
+app.use(limiter);
 app.use(helmet());
 app.use(bodyParser.json());
 app.use(morgan('combined'));
